@@ -43,7 +43,7 @@ ReactDOM.render(
       { name: 'Ryan', friend: true },
       { name: 'Michael', friend: false },
       { name: 'Mikenzi', friend: false },
-      { name: 'Jessica', friend: true },
+      { name: 'Jim', friend: true },
       { name: 'Dan', friend: false }
     ]}
   />,

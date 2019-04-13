@@ -1,5 +1,5 @@
 // state
-// lifecycle events ( allows you to hook into differnt lifecycle moments in a componet )
+// lifecycle events ( allows you to hook into differnt lifecycle moments in a component )
 // I want to run this component when data is loads to the DOM
 // UI ( shown with a render method )
 
