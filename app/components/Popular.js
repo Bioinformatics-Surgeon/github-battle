@@ -44,6 +44,7 @@ class Popular extends React.Component {
   }
 
   updateLanguage(lang) {
+    console.log('UpdateLanguage');
     this.setState(function() {
       return {
         selectedLanguage: lang
@@ -51,7 +52,7 @@ class Popular extends React.Component {
     });
     api.fetchPopularRepos(lang).then(
       function(repos) {
-        this.setState(function(repos) {
+        this.setState(function() {
           return {
             repos: repos
           };
@@ -67,6 +68,7 @@ class Popular extends React.Component {
           selectedLanguage={this.state.selectedLanguage}
           onSelect={this.updateLanguage}
         />
+        {JSON.stringify(this.state.repos, null, 2)}
       </div>
     );
   }
