@@ -29,6 +29,10 @@ li {
   padding: 0.5rem;
 }
 
+a {
+  text-decoration: none;
+  color: #d0021b;
+}
 .popular-list {
   display: flex;
   flex-wrap: wrap;
@@ -57,4 +61,16 @@ li {
 .loading {
   display: flex;
   justify-content: center;
+}
+
+.nav {
+  display: flex;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.nav li {
+  margin-right: 15px;
 }
