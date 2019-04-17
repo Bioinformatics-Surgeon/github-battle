@@ -104,6 +104,7 @@ class Popular extends React.Component {
         ) : (
           <RepoGrid repos={this.state.repos} />
         )}
+        {/* If this.state.repos is falsey noted by the "!", then render LOADING! once it become truthy then render RepoGrid */}
       </div>
     );
   }
