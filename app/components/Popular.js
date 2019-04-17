@@ -5,7 +5,7 @@ const PropTypes = require('prop-types');
 function SelectedLanguage(props) {
   let languages = ['All', 'Javascript', 'Python', 'C#', 'Java', 'Ruby', 'CSS'];
   return (
-    <ul className="languagesNav">
+    <ul className="languages">
       {languages.map(function(lang) {
         return (
           <li
@@ -22,6 +22,38 @@ function SelectedLanguage(props) {
     </ul>
   );
 }
+
+function RepoGrid(props) {
+  return (
+    <ul className="popular-list">
+      {props.repos.map(function(repo, index) {
+        return (
+          <li key={repo.name} className="popular-item">
+            <div className="popular-rank">#{index + 1}</div>
+            <ul className="space-list items">
+              <li>
+                <img
+                  src={repo.owner.avatar_url}
+                  alt={'Avatar for ' + repo.owner.login}
+                  className="avatar"
+                />
+              </li>
+              <li>
+                <a href={repo.html_url}>{repo.name}</a>
+              </li>
+              <li>@{repo.owner.login}</li>
+              <li>{repo.stargazers_count} stars</li>
+            </ul>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+RepoGrid.prototypes = {
+  repos: PropTypes.array.isRequired
+};
 
 SelectedLanguage.propTypes = {
   selectedLanguage: PropTypes.string.isRequired,
@@ -44,10 +76,10 @@ class Popular extends React.Component {
   }
 
   updateLanguage(lang) {
-    console.log('UpdateLanguage');
     this.setState(function() {
       return {
-        selectedLanguage: lang
+        selectedLanguage: lang,
+        repos: null
       };
     });
     api.fetchPopularRepos(lang).then(
@@ -60,7 +92,6 @@ class Popular extends React.Component {
       }.bind(this)
     );
   }
-
   render() {
     return (
       <div>
@@ -68,7 +99,11 @@ class Popular extends React.Component {
           selectedLanguage={this.state.selectedLanguage}
           onSelect={this.updateLanguage}
         />
-        {JSON.stringify(this.state.repos, null, 2)}
+        {!this.state.repos ? (
+          <p>LOADING!</p>
+        ) : (
+          <RepoGrid repos={this.state.repos} />
+        )}
       </div>
     );
   }
