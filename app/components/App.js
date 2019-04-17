@@ -9,9 +9,9 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="container">
+        <div className='container'>
           <Nav />
-          <Route path="/popular" component={Popular} />
+          <Route path='/popular' component={Popular} />
         </div>
       </Router>
     );

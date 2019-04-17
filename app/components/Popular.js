@@ -5,7 +5,7 @@ const PropTypes = require('prop-types');
 function SelectedLanguage(props) {
   let languages = ['All', 'Javascript', 'Python', 'C#', 'Java', 'Ruby', 'CSS'];
   return (
-    <ul className="languages">
+    <ul className='languages'>
       {languages.map(function(lang) {
         return (
           <li
@@ -25,17 +25,17 @@ function SelectedLanguage(props) {
 
 function RepoGrid(props) {
   return (
-    <ul className="popular-list">
+    <ul className='popular-list'>
       {props.repos.map(function(repo, index) {
         return (
-          <li key={repo.name} className="popular-item">
-            <div className="popular-rank">#{index + 1}</div>
-            <ul className="space-list items">
+          <li key={repo.name} className='popular-item'>
+            <div className='popular-rank'>#{index + 1}</div>
+            <ul className='space-list items'>
               <li>
                 <img
                   src={repo.owner.avatar_url}
                   alt={'Avatar for ' + repo.owner.login}
-                  className="avatar"
+                  className='avatar'
                 />
               </li>
               <li>
@@ -100,7 +100,7 @@ class Popular extends React.Component {
           onSelect={this.updateLanguage}
         />
         {!this.state.repos ? (
-          <p className="loading">LOADING!</p>
+          <p className='loading'>LOADING!</p>
         ) : (
           <RepoGrid repos={this.state.repos} />
         )}
