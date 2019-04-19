@@ -4,6 +4,10 @@ body {
   background: rgb(231, 229, 226);
 }
 
+.row {
+  display: flex;
+  justify-content: space-around;
+}
 .container {
   max-width: 1200px;
   margin: 0px;
