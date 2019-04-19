@@ -8,6 +8,8 @@ class PlayerInput extends React.Component {
     this.state = {
       username: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSumbit = this.handleSumbit.bind(this);
   }
 
   handleChange(event) {
@@ -19,9 +21,15 @@ class PlayerInput extends React.Component {
       };
     });
   }
+
+  handleSumbit(event) {
+    event.preventDefault();
+    this.props.onSubmit(this.props.id, this.state.username);
+  }
+
   render() {
     return (
-      <form className='column'>
+      <form className='column' onSubmit={this.handleSumbit}>
         <label htmlFor='username' className='header'>
           {this.props.label}
         </label>
@@ -33,6 +41,13 @@ class PlayerInput extends React.Component {
           value={this.state.username}
           onChange={this.handleChange}
         />
+        <button
+          className='button'
+          type='submit'
+          disabled={!this.state.username}
+        >
+          Submit
+        </button>
       </form>
     );
   }
@@ -45,7 +60,7 @@ PlayerInput.proptypes = {
 };
 
 class Battle extends React.Component {
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       playerOneName: '',
@@ -74,17 +89,17 @@ class Battle extends React.Component {
       <div>
         <div className='row'>
           {!playerOneName && (
-            <PlayInput
+            <PlayerInput
               id='playerOne'
               label='Player One'
-              onDumbit={this.handleSumbit}
+              onSubmit={this.handleSumbit}
             />
           )}
           {!playerTwoName && (
-            <PlayInput
+            <PlayerInput
               id='playerTwo'
               label='Player Two'
-              onSumbit={this.handleSumbit}
+              onSubmit={this.handleSumbit}
             />
           )}
         </div>
@@ -102,7 +117,9 @@ module.exports = Battle;
 // React is controlling the value of the specifif input field
 // Uncontrolled it will grab it from the DOM
 // pass child a func and recieve state and will then update the parent state
+
 // {!playerOneName &&
 // <PlayInput />}
 // - says if playerOneName is truthy then render <PlayerInput />
 // If a componet is not re-useable then keep it in it's asociated file
+// If playOne is a thing don't show anything else show the <PlayerInput /> component
