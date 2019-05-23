@@ -114,12 +114,12 @@ module.exports = Battle;
 // Encaplsulation - parent doesn't care about the current input it only cares about the end or final result
 // the child will pass username to the parent with an onSubmit handleler.
 // A controlled component: binds the value of the input field to what the property on the state object is or what the state value id
-// React is controlling the value of the specifif input field
+// React is controlling the value of the specific input field
 // Uncontrolled it will grab it from the DOM
 // pass child a func and recieve state and will then update the parent state
 
 // {!playerOneName &&
 // <PlayInput />}
 // - says if playerOneName is truthy then render <PlayerInput />
-// If a componet is not re-useable then keep it in it's asociated file
-// If playOne is a thing don't show anything else show the <PlayerInput /> component
+// If a component is not re-useable then keep it in it's associated file
+// If playerOne is a thing don't show anything else show the <PlayerInput /> component
