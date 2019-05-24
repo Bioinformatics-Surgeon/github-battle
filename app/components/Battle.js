@@ -65,14 +65,15 @@ class Battle extends React.Component {
     this.state = {
       playerOneName: '',
       playerTwoName: '',
-      playerOneImg: null,
-      playerTwoImg: null
+      playerOneImage: null,
+      playerTwoImage: null
     };
 
     this.handleSumbit = this.handleSumbit.bind(this);
   }
 
   handleSumbit(id, username) {
+    // we want the this key word in this function to always reference this instance(the component) no matter where this function is called it will always refer to this instance
     this.setState(function() {
       let newState = {};
       newState[id + 'Name'] = username;
