@@ -146,12 +146,19 @@ Breakdown of the state management of the Battle component:
 With Forms: 
   typically the users will type something in the input field and submit it; then they will go grab it form the DOM
 
-* Controlled component
+* Controlled component *
   - Instead of going and grabbing hte value form teh DOM we bind the value of the input field to whatever the property of the state object
   - we bind the input value to whatever the state value is, so whenever you update the state the input field will change
   - React is control the specific value of the input field
   - React doc recommends this way
 
-* Uncontrolled component:
+* Uncontrolled component *
   - instead of binding the input value to the state we will get the value from the DOM after submit
+
+example: when user types into the input field it updates the state which then updates the value of that input field
+
+- to handle the encapsulation we are passing a onSubmit function down to the child component
+  - then when the button for the on submit is click we will then pass the function that is passed down the value of the state of the child to the onSubmit function form the parent; which will update the parents state
+
+* the way to update a parents state from an encapsulated child is to pass that child a function that will handle that will accept the childs value and update the parents state
 */
