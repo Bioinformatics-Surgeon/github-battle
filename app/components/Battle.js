@@ -4,10 +4,10 @@ const PropTypes = require('prop-types');
 class PlayerInput extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: ''
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
   }
@@ -26,11 +26,11 @@ class PlayerInput extends React.Component {
     event.preventDefault();
     this.props.onSubmit(this.props.id, this.state.username);
   }
-
+  // we want the button to be disabled if this.state.username is not a thing. If there is no username in the buttons input field then we don't want the button to work
   render() {
     return (
       <form className='column' onSubmit={this.handleSumbit}>
-        <label htmlFor='username' className='header'>
+        <label className='header' htmlFor='username'>
           {this.props.label}
         </label>
         <input
@@ -52,6 +52,8 @@ class PlayerInput extends React.Component {
     );
   }
 }
+
+// the proptypes that are being passed from Battle are the following 3 props
 
 PlayerInput.proptypes = {
   id: PropTypes.string.isRequired,
@@ -83,9 +85,9 @@ class Battle extends React.Component {
     });
   }
   render() {
-    const playerOneName = this.state.playerOneName;
-    const playerTwoName = this.state.playerTwoName;
-
+    let playerOneName = this.state.playerOneName;
+    let playerTwoName = this.state.playerTwoName;
+    // if this is truthy then do this {!whatever && (<Component/>)}
     return (
       <div>
         <div className='row'>
@@ -122,5 +124,7 @@ module.exports = Battle;
 // {!playerOneName &&
 // <PlayInput />}
 // - says if playerOneName is truthy then render <PlayerInput />
-// If a component is not re-useable then keep it in it's associated file
 // If playerOne is a thing don't show anything else show the <PlayerInput /> component
+
+// If a component is not re-useable then keep it in it's associated file
+// The PlayerInput component is unique to this component so we will keep it within this file
