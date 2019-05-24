@@ -114,8 +114,10 @@ class Battle extends React.Component {
 module.exports = Battle;
 
 // React is controlling the state of the app with forms, this is often called a controlled component
+
 // Encaplsulation - parent doesn't care about the current input it only cares about the end or final result
 // the child will pass username to the parent with an onSubmit handleler.
+
 // A controlled component: binds the value of the input field to what the property on the state object is or what the state value id
 // React is controlling the value of the specific input field
 // Uncontrolled it will grab it from the DOM
@@ -128,3 +130,28 @@ module.exports = Battle;
 
 // If a component is not re-useable then keep it in it's associated file
 // The PlayerInput component is unique to this component so we will keep it within this file
+
+/*
+Breakdown of the state management of the Battle component:
+- Inside of the Battle component lives 2 smaller PlayerInput components 
+- State for the parent Battle component is:
+    playerOneImage: null
+    playerOneName: ""
+    playerTwoImage: null
+    playerTwoName: ""
+
+- State for the child components PlayerInput is:
+    username: ""
+
+With Forms: 
+  typically the users will type something in the input field and submit it; then they will go grab it form the DOM
+
+* Controlled component
+  - Instead of going and grabbing hte value form teh DOM we bind the value of the input field to whatever the property of the state object
+  - we bind the input value to whatever the state value is, so whenever you update the state the input field will change
+  - React is control the specific value of the input field
+  - React doc recommends this way
+
+* Uncontrolled component:
+  - instead of binding the input value to the state we will get the value from the DOM after submit
+*/
