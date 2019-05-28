@@ -1,5 +1,25 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const Link = require('react-router-dom').Link;
+
+function PlayerPreview(props) {
+  return (
+    <div>
+      <div className='column'>
+        <img src={props.avatar} alt={'Avatar for' + props.username} />
+        <h2 className='username'>@{props.username}</h2>
+      </div>
+      <button className='reset' onClick={props.onReset.bind(null, props.id)} />
+    </div>
+  );
+}
+
+PlayerPreview.proptypes = {
+  id: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired
+};
 
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -72,6 +92,7 @@ class Battle extends React.Component {
     };
 
     this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSumbit(id, username) {
@@ -84,9 +105,22 @@ class Battle extends React.Component {
       return newState;
     });
   }
+
+  handleReset(id) {
+    this.setState(function() {
+      let newState = {};
+      newState[id + 'Name'] = '';
+      newState[id + 'Image'] = null;
+      return newState;
+    });
+  }
+
   render() {
     let playerOneName = this.state.playerOneName;
     let playerTwoName = this.state.playerTwoName;
+    let playerOneImage = this.state.playerOneImage;
+    let playerTwoImage = this.state.playerTwoImage;
+
     // if this is truthy then do this {!whatever && (<Component/>)}
     return (
       <div>
@@ -98,6 +132,14 @@ class Battle extends React.Component {
               onSubmit={this.handleSumbit}
             />
           )}
+          {playerOneImage !== null && (
+            <PlayerPreview
+              id='playerOne'
+              avatar={playerOneImage}
+              username={playerOneName}
+              onReset={this.handleReset}
+            />
+          )}
           {!playerTwoName && (
             <PlayerInput
               id='playerTwo'
@@ -105,7 +147,21 @@ class Battle extends React.Component {
               onSubmit={this.handleSumbit}
             />
           )}
+          {playerTwoImage !== null && (
+            <PlayerPreview
+              id='playerTwo'
+              avatar={playerTwoImage}
+              username={playerTwoName}
+              onReset={this.handleReset}
+            />
+          )}
         </div>
+      {playerOneImage && playerTwoImage && 
+        <Link
+          className='button'
+          to={}>
+          Battle
+        </Link>}
       </div>
     );
   }
